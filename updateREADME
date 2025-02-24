@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+owner="h4m6urg1r"
+username="Hamburgir"
+repo="wallpapers"
+# branch="main"
+branch=`git branch --show-current`
+
+embedIMG() {
+	echo "![$1](/$2)"
+}
+
+genRawUrl() {
+	echo "https://raw.githubusercontent.com/${owner}/${repo}/${branch}/$1/$2"
+}
+
+comment() {
+	echo "<!-- $1 -->"
+}
+
+createSections() {
+	for i in $(ls -d */)
+	do
+		echo "1. **${i%/}**"
+		for j in $(ls $i)
+		do
+			echo "	- [$j]($(genRawUrl "$i" "$j"))"
+			embedIMG "$j" "$i$j"
+			echo '		```'
+			echo -n '		'
+			genRawUrl "$i" "$j"
+			echo '		```'
+		done
+	done
+}
+
+main() {
+	echo "# $username's repository for wallpapers"
+	comment "This README.md file is generated automatically any changes will be overridden"
+	createSections
+}
+
+# # Dry run
+# main
+
+main > README.md
