@@ -1,46 +1,43 @@
 #!/usr/bin/env bash
 
-owner="h4m6urg1r"
-username="Hamburgir"
+# Define the repository owner, name, and branch
+owner="uday-sudo"
 repo="wallpapers"
-# branch="main"
-branch=`git branch --show-current`
+branch=$(git branch --show-current)
 
-embedIMG() {
-	echo "![$1](/$2)"
-}
-
+# Function to generate raw URL for a file
 genRawUrl() {
-	echo "https://raw.githubusercontent.com/${owner}/${repo}/${branch}/$1/$2"
+  echo "https://raw.githubusercontent.com/${owner}/${repo}/${branch}/$1$2"
 }
 
-comment() {
-	echo "<!-- $1 -->"
-}
-
+# Function to create collapsible sections
 createSections() {
-	for i in $(ls -d */)
-	do
-		echo "1. **${i%/}**"
-		for j in $(ls $i)
-		do
-			echo "	- [$j]($(genRawUrl "$i" "$j"))"
-			embedIMG "$j" "$i$j"
-			echo '		```'
-			echo -n '		'
-			genRawUrl "$i" "$j"
-			echo '		```'
-		done
-	done
+  echo ""
+  for dir in $(ls -d */); do
+	echo " "
+    echo "## **${dir%/}**"
+	echo " "
+    for file in $(ls "$dir"); do
+	  if [[ "$file" =~ \.(jpg|jpeg|png|gif|bmp|tiff|webp)$ ]]; then
+		echo "<details>"
+		echo "<summary>$file</summary>"
+		echo "<br>"
+		echo ""
+		echo "![$file](/$dir$file)"
+		echo ""
+		echo "\`\`\`$(genRawUrl "$dir" "$file")\`\`\`"
+		echo "</details>"
+	  fi
+    done
+  done
 }
 
 main() {
-	echo "# $username's repository for wallpapers"
-	comment "This README.md file is generated automatically any changes will be overridden"
-	createSections
+  echo "# Wallpapers Repository"
+  echo "<!-- This README.md file is generated automatically; any changes will be overridden -->"
+  createSections
 }
 
-# # Dry run
-# main
-
 main > README.md
+
+echo "README.md generated successfully!"

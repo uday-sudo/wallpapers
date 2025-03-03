@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-count=1
+
 image_extensions=("jpg" "jpeg" "png" "gif" "bmp" "tiff" "webp")
+count=1
 
 for file in *; do
   if [ -f "$file" ]; then
@@ -8,10 +9,14 @@ for file in *; do
     extension_lower=$(echo "$extension" | tr '[:upper:]' '[:lower:]')
 
     if [[ " ${image_extensions[*]} " =~ " ${extension_lower} " ]]; then
-      while [ -e "${count}.${extension_lower}" ]; do
+      new_name=$(printf "%03d.%s" "$count" "$extension_lower")
+
+      while [ -e "$new_name" ]; do
         count=$((count + 1))
+        new_name=$(printf "%03d.%s" "$count" "$extension_lower")
       done
-      mv -- "$file" "${count}.${extension_lower}"
+
+      git mv -- "$file" "$new_name"
       count=$((count + 1))
     fi
   fi
