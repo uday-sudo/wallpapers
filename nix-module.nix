@@ -6,11 +6,11 @@ self: {
 			wallpaper = {
 				desktop = {
 					dir = lib.mkOption {
-						default = "your_name";
+						default = "regular";
 						description = "Directory containing the wallpaper";
 					};
 					file = lib.mkOption {
-						default = "MitsuhaTakiFirstMeet.jpg";
+						default = "001.jpg";
 						description = "Name of the Image/Wallpaper";
 					};
 					nixConf = lib.mkOption {
@@ -24,11 +24,11 @@ self: {
 				};
 				sddm = {
 					dir = lib.mkOption {
-						default = "your_name";
+						default = "regular";
 						description = "Directory containing the wallpaper";
 					};
 					file = lib.mkOption {
-						default = "MitsuhaTakiFirstMeet.jpg";
+						default = "002.jpg";
 						description = "Name of the Image/Wallpaper";
 					};
 					nixConf = lib.mkOption {
@@ -42,7 +42,7 @@ self: {
 				};
 				grub = {
 					dir = lib.mkOption {
-						default = "your_name";
+						default = "regular";
 						description = "Directory containing the wallpaper";
 					};
 					file = lib.mkOption {
@@ -58,16 +58,6 @@ self: {
 						description = "Resulting image";
 					};
 				};
-				# hyprland = {
-				# 	blur = {
-				# 		size = lib.mkOption {
-				# 			default = 0;
-				# 		};
-				# 		passes = lib.mkOption {
-				# 			default = 0;
-				# 		};
-				# 	};
-				# };
 			};
 		};
 		config = {
@@ -84,14 +74,6 @@ self: {
 					dir = cfg.grub.dir;
 					file = cfg.grub.file;
 				};
-				# hyprland = (if (builtins.pathExists cfg.desktop.nixConf) then
-				# 		import cfg.desktop.nixConf
-				# 	else {
-				# 		blur = {
-				# 			size = 3;
-				# 			passes = 4;
-				# 		};
-				# 	});
 			};
 		};
 	};
