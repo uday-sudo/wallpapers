@@ -14,11 +14,11 @@ self: {
 			wallpaper = {
 				desktop = {
 					dir = mkOption {
-						default = "your_name";
+						default = "regular";
 						description = "Directory containing the wallpaper";
 					};
 					file = mkOption {
-						default = "MitsuhaTakiFirstMeet.jpg";
+						default = "001.jpg";
 						description = "Name of the Image/Wallpaper";
 					};
 					nixConf = mkOption {
@@ -31,20 +31,6 @@ self: {
 					};
 				};
 				hyprland = {
-					gaps = rec {
-						out = mkOption {
-							default = cfg.hyprland.gaps.in' * 2;
-							type = int;
-						};
-						in' = mkOption {
-							default = 3;
-							type = int;
-						};
-						workspaces = mkOption {
-							default = cfg.hyprland.gaps.in';
-							type = int;
-						};
-					};
 					blur = {
 						enabled = lib.mkEnableOption "Blur";
 						size = mkOption {
