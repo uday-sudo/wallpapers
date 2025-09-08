@@ -698,3 +698,23 @@
 
 ```https://raw.githubusercontent.com/uday-sudo/wallpapers/main/themed/starwars_walker.jpg```
 </details>
+
+## **smol**
+
+<details>
+<summary>me_nobg.png</summary>
+<br>
+
+![me_nobg.png](/smol/me_nobg.png)
+
+```https://raw.githubusercontent.com/uday-sudo/wallpapers/main/smol/me_nobg.png```
+</details>
+
+<details>
+<summary>me_purplebg.png</summary>
+<br>
+
+![me_purplebg.png](/smol/me_purplebg.png)
+
+```https://raw.githubusercontent.com/uday-sudo/wallpapers/main/smol/me_purplebg.png```
+</details>
